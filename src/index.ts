@@ -1,5 +1,5 @@
-console.log("test")
+console.log('test');
 
-let a: any = 'test'
+let a: any = 'test';
 
-a = 123
+a = 122;
