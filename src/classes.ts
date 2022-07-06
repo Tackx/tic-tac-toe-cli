@@ -114,7 +114,7 @@ export class Player {
       this.board.updatePlayedCoords({ x: intX, y: intY }, this.team);
       console.log(`${this.name} plays ${[intX, intY]}`);
     } else {
-      console.log(
+      return console.log(
         `${this.name}: This coordinate has already been played ${[intX, intY]}`
       );
     }
