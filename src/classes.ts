@@ -1,5 +1,5 @@
-import { Coord } from './interfaces.js';
-import { Status, Team } from './types.js';
+import { Coord } from './interfaces';
+import { Status, Team } from './types';
 
 export class Game {
   constructor(public status: Status = 0) {}
@@ -14,7 +14,21 @@ export class Game {
 }
 
 export class Board {
-  constructor(private playedCoords: Coord[] = []) {}
+  constructor(
+    // private playingBoardX: number[] = [],
+    // private playingBoardY: number[] = [],
+    private playedCoords: Coord[] = []
+  ) {
+    // Initialize the playing board, load X and Y coords
+    // let x = 1;
+    // let y = 1;
+    // while (x <= 1000 && y <= 1000) {
+    //   this.playingBoardX.push(x);
+    //   this.playingBoardY.push(y);
+    //   x++;
+    //   y++;
+    // }
+  }
 
   public getPlayedCoords(): Coord[] {
     return this.playedCoords;
@@ -40,21 +54,32 @@ export class Board {
 }
 
 export class Player {
-  constructor(public name: string) {
+  constructor(public name: string, public team: Team, private board: Board) {
     this.winner = false;
-    this.team = this.teamGenerator().next();
   }
   public winner: boolean;
-  public team: IteratorResult<Team>;
 
-  *teamGenerator(): Generator<Team> {
-    let i = 0;
-    if (i < 1) {
-      yield i;
-      i++;
+  play(x: number, y: number): void {
+    if (!this.board.getPlayedCoords().find(el => el.x === x && el.y === y)) {
+      this.board.updatePlayedCoords({ team: this.team, x, y });
+      console.log(`${this.name} plays ${[x, y]}`);
     } else {
-      yield i;
-      i--;
+      console.log(
+        `${this.name}: This coordinate has already been played ${[x, y]}`
+      );
     }
   }
+
+  // public team: IteratorResult<Team>;
+
+  // *teamGenerator(): Generator<Team> {
+  //   let i = 0;
+  //   if (i < 1) {
+  //     yield i;
+  //     i++;
+  //   } else {
+  //     yield i;
+  //     i--;
+  //   }
+  // }
 }
