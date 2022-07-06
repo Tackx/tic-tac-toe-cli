@@ -1,33 +1,36 @@
-import { Coord } from './interfaces';
+import { AvailableCoord, Coord } from './interfaces';
 import { Status, Team } from './types';
 
 export class Game {
-  constructor(public status: Status = 0) {}
+  constructor(public status: Status = 0) {
+    this.gameWon = false;
+  }
+
+  gameWon: boolean;
 
   public start(): void {
     this.status = 1;
+    console.log('The game gas been started');
   }
 
   public end(): void {
     this.status = 0;
+    console.log('The game gas been finished');
   }
 }
 
 export class Board {
   constructor(
-    // private playingBoardX: number[] = [],
-    // private playingBoardY: number[] = [],
-    private playedCoords: Coord[] = []
+    private game: Game,
+    private playedCoords: Coord[] = [],
+    private availableCoords: AvailableCoord[] = []
   ) {
-    // Initialize the playing board, load X and Y coords
-    // let x = 1;
-    // let y = 1;
-    // while (x <= 1000 && y <= 1000) {
-    //   this.playingBoardX.push(x);
-    //   this.playingBoardY.push(y);
-    //   x++;
-    //   y++;
-    // }
+    let x = 1;
+
+    while (x <= 1000) {
+      this.availableCoords.push({ x });
+      x++;
+    }
   }
 
   public getPlayedCoords(): Coord[] {
@@ -39,11 +42,16 @@ export class Board {
     return;
   }
 
+  public getAvailableCoords(): AvailableCoord[] {
+    return this.availableCoords;
+  }
+
   public checkWinCondition(): boolean {
-    if (this.playedCoords.length === 2) {
-      return true;
+    if (this.playedCoords.length >= 2) {
+      this.game.gameWon = true;
+      return this.game.gameWon;
     } else {
-      return false;
+      return this.game.gameWon;
     }
   }
 
@@ -59,27 +67,30 @@ export class Player {
   }
   public winner: boolean;
 
-  play(x: number, y: number): void {
-    if (!this.board.getPlayedCoords().find(el => el.x === x && el.y === y)) {
-      this.board.updatePlayedCoords({ team: this.team, x, y });
-      console.log(`${this.name} plays ${[x, y]}`);
+  play(x: string, y: string): void {
+    const intX: number = parseInt(x);
+    const intY: number = parseInt(y);
+
+    // Check X and Y converted to integers against an array of allowed values, defined on the Board class
+    if (
+      !this.board.getAvailableCoords().find(el => el.x === intX) ||
+      !this.board.getAvailableCoords().find(el => el.x === intY)
+    ) {
+      return console.log(`Incorrect coord(s) entered: [${[x, y]}]`);
+    }
+
+    // If the X and Y coordinates have not been played yet, play them
+    if (
+      !this.board.getPlayedCoords().find(el => el.x === intX && el.y === intY)
+    ) {
+      this.board.updatePlayedCoords({ team: this.team, x: intX, y: intY });
+      console.log(`${this.name} plays ${[intX, intY]}`);
     } else {
       console.log(
-        `${this.name}: This coordinate has already been played ${[x, y]}`
+        `${this.name}: This coordinate has already been played ${[intX, intY]}`
       );
     }
+    // After the player successfully makes their next move, check if the conditions for winning have been met
+    this.board.checkWinCondition();
   }
-
-  // public team: IteratorResult<Team>;
-
-  // *teamGenerator(): Generator<Team> {
-  //   let i = 0;
-  //   if (i < 1) {
-  //     yield i;
-  //     i++;
-  //   } else {
-  //     yield i;
-  //     i--;
-  //   }
-  // }
 }

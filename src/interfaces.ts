@@ -1,11 +1,10 @@
 import { Team } from './types';
 
-export interface Coord {
-  team: Team;
+export interface AvailableCoord {
   x: number;
-  y: number;
 }
 
-export interface Board extends Coord {
-  board: Coord[];
+export interface Coord extends AvailableCoord {
+  team: Team;
+  y: number;
 }

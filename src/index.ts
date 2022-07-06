@@ -1,35 +1,28 @@
 import { Game, Board, Player } from './classes';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const prompt = require('prompt-sync')();
 
 const game = new Game();
-const board = new Board();
+const board = new Board(game);
 const player1 = new Player('Player1', 0, board);
 const player2 = new Player('Player2', 1, board);
 
 game.start();
 
-player1.play(1, 2);
+while (!game.gameWon) {
+  if (board.getPlayedCoords().length % 2 === 0) {
+    console.log(`${player1.name}'s turn:`);
+    const x = prompt('X:');
+    const y = prompt('Y:');
+    player1.play(x, y);
+  } else {
+    console.log(`${player2.name}'s turn:`);
+    const x = prompt('X:');
+    const y = prompt('Y:');
+    player2.play(x, y);
+  }
 
-// console.log(game);
-// console.log(board);
-// console.log(player1);
-// console.log(player2);
+  console.log(board.getPlayedCoords());
+}
 
-console.log(board.getPlayedCoords());
-
-player1.play(1, 2);
-
-console.log(board.getPlayedCoords());
-
-player1.play(2, 1);
-
-console.log(board.getPlayedCoords());
-
-player2.play(2, 1);
-
-console.log(board.getPlayedCoords());
-
-player2.play(3, 1);
-
-console.log(board.getPlayedCoords());
-
-player1.play(3, 1);
+game.end();

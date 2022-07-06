@@ -18,8 +18,11 @@
     "url": "https://github.com/Tackx/tc-game/issues"
   },
   "homepage": "https://github.com/Tackx/tc-game#readme",
-  "dependencies": {},
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  },
   "devDependencies": {
+    "@types/node": "^18.0.3",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
     "eslint": "^8.19.0",
