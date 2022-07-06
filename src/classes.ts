@@ -10,12 +10,12 @@ export class Game {
 
   public start(): void {
     this.status = 1;
-    console.log('The game gas been started');
+    console.log('The game has been started');
   }
 
   public end(): void {
     this.status = 0;
-    console.log('The game gas been finished');
+    console.log('The game has been finished');
   }
 }
 
