@@ -1,10 +1,15 @@
-import { Team } from './types';
-
-export interface AvailableCoord {
+export interface Coord {
   x: number;
+  y: number;
 }
 
-export interface Coord extends AvailableCoord {
-  team: Team;
-  y: number;
+export interface CoordStatus {
+  status: [
+    {
+      playedCoords: Coord[];
+    },
+    {
+      playedCoords: Coord[];
+    }
+  ];
 }

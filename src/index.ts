@@ -9,8 +9,8 @@ const player2 = new Player('Player2', 1, board);
 
 game.start();
 
-while (!game.gameWon) {
-  if (board.getPlayedCoords().length % 2 === 0) {
+while (!game.gameWon && game.status === 1) {
+  if (board.getStepsPlayed() % 2 === 0) {
     console.log(`${player1.name}'s turn:`);
     const x = prompt('X:');
     const y = prompt('Y:');
