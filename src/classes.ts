@@ -4,9 +4,11 @@ import { Status, Team } from './types';
 export class Game {
   constructor(public status: Status = 0) {
     this.gameWon = false;
+    this.winningTeam = null;
   }
 
   gameWon: boolean;
+  winningTeam: Team | null;
 
   public start(): void {
     this.status = 1;
@@ -15,7 +17,10 @@ export class Game {
 
   public end(): void {
     this.status = 0;
-    console.log('The game has been finished');
+    console.log(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      `The game has been finished. Winner = ${Team[this.winningTeam!]} team!`
+    );
   }
 }
 
@@ -68,19 +73,26 @@ export class Board {
   }
 
   public checkWinCondition(): boolean {
-    this.playedCoords.status.map(coordsObj => {
+    // Checks if there are 3 entries in a row in a linear line, TODO linear and horizontal checks
+    // TODO - didn't work properly with 9,9 + 10,10 + 8,8 - To be checked
+    this.playedCoords.status.map((coordsObj, team) => {
       coordsObj.playedCoords.map((el, i) => {
         for (let j = i + 1; j < coordsObj.playedCoords.length; j++) {
           if (
-            coordsObj.playedCoords[j]?.x === el.x + 1 &&
-            coordsObj.playedCoords[j]?.y === el.y + 1
+            (coordsObj.playedCoords[j]?.x === el.x + 1 &&
+              coordsObj.playedCoords[j]?.y === el.y + 1) ||
+            (coordsObj.playedCoords[j]?.x === el.x - 1 &&
+              coordsObj.playedCoords[j]?.y === el.y - 1)
           ) {
             for (let k = i + 1; k < coordsObj.playedCoords.length; k++) {
               if (
-                coordsObj.playedCoords[k]?.x === el.x + 2 &&
-                coordsObj.playedCoords[k]?.y === el.y + 2
+                (coordsObj.playedCoords[k]?.x === el.x + 2 &&
+                  coordsObj.playedCoords[k]?.y === el.y + 2) ||
+                (coordsObj.playedCoords[k]?.x === el.x - 2 &&
+                  coordsObj.playedCoords[k]?.y === el.y - 2)
               ) {
                 this.game.gameWon = true;
+                this.game.winningTeam = team;
               }
             }
           }

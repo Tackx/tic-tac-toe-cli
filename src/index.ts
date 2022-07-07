@@ -4,7 +4,9 @@ const prompt = require('prompt-sync')();
 
 const game = new Game();
 const board = new Board(game);
+// Red team
 const player1 = new Player('Player1', 0, board);
+// Blue team
 const player2 = new Player('Player2', 1, board);
 
 game.start();
