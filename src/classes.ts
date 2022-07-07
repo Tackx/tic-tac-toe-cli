@@ -31,10 +31,10 @@ export class Board {
     this.playedCoords = {
       status: [
         {
-          playedCoords: [{ x: 0, y: 0 }],
+          playedCoords: [],
         },
         {
-          playedCoords: [{ x: 0, y: 0 }],
+          playedCoords: [],
         },
       ],
     };
@@ -119,7 +119,7 @@ export class Player {
       );
     }
     // After the player successfully makes their next move, check if the conditions for winning have been met
-    this.board.checkWinCondition();
     this.board.incrementStepsPlayed();
+    this.board.checkWinCondition();
   }
 }

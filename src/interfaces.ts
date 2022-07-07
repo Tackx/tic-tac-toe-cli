@@ -6,10 +6,10 @@ export interface Coord {
 export interface CoordStatus {
   status: [
     {
-      playedCoords: Coord[];
+      playedCoords: Array<Coord>;
     },
     {
-      playedCoords: Coord[];
+      playedCoords: Array<Coord>;
     }
   ];
 }
