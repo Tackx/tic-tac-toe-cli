@@ -22,7 +22,8 @@ while (!game.gameWon && game.status === 1) {
     player2.play(x, y);
   }
 
-  console.log(board.getPlayedCoords());
+  console.log(board.getPlayedCoords().status[0]);
+  console.log(board.getPlayedCoords().status[1]);
 }
 
 game.end();

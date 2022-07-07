@@ -67,14 +67,27 @@ export class Board {
     return;
   }
 
-  // TODO add also checking of the other teams status..
   public checkWinCondition(): boolean {
-    if (this.playedCoords.status[0].playedCoords.length >= 3) {
-      this.game.gameWon = true;
-      return this.game.gameWon;
-    } else {
-      return this.game.gameWon;
-    }
+    this.playedCoords.status.map(coordsObj => {
+      coordsObj.playedCoords.map((el, i) => {
+        for (let j = i + 1; j < coordsObj.playedCoords.length; j++) {
+          if (
+            coordsObj.playedCoords[j]?.x === el.x + 1 &&
+            coordsObj.playedCoords[j]?.y === el.y + 1
+          ) {
+            for (let k = i + 1; k < coordsObj.playedCoords.length; k++) {
+              if (
+                coordsObj.playedCoords[k]?.x === el.x + 2 &&
+                coordsObj.playedCoords[k]?.y === el.y + 2
+              ) {
+                this.game.gameWon = true;
+              }
+            }
+          }
+        }
+      });
+    });
+    return this.game.gameWon;
   }
 
   public clearBoard(): void {
