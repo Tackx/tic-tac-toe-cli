@@ -2,7 +2,7 @@
 
 - Written in TypeScript
 - Used to practice OOP and TS
-  - Still quite new to TS
+  - Still quite new to both
 - Win condition checking algorithm could definitely be improved upon
 - Currently only played via CLI
 
