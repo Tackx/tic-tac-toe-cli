@@ -72,19 +72,19 @@ export class Board {
     return;
   }
 
+  // Checks if there are 3 entries in a row in a linear line, TODO linear and horizontal checks
   public checkWinCondition(): boolean {
-    // Checks if there are 3 entries in a row in a linear line, TODO linear and horizontal checks
-    // TODO - didn't work properly with 9,9 + 10,10 + 8,8 - To be checked
+    // Linear line
     this.playedCoords.status.map((coordsObj, team) => {
-      coordsObj.playedCoords.map((el, i) => {
-        for (let j = i + 1; j < coordsObj.playedCoords.length; j++) {
+      coordsObj.playedCoords.map(el => {
+        for (let j = 0; j < coordsObj.playedCoords.length; j++) {
           if (
             (coordsObj.playedCoords[j]?.x === el.x + 1 &&
               coordsObj.playedCoords[j]?.y === el.y + 1) ||
             (coordsObj.playedCoords[j]?.x === el.x - 1 &&
               coordsObj.playedCoords[j]?.y === el.y - 1)
           ) {
-            for (let k = i + 1; k < coordsObj.playedCoords.length; k++) {
+            for (let k = 0; k < coordsObj.playedCoords.length; k++) {
               if (
                 (coordsObj.playedCoords[k]?.x === el.x + 2 &&
                   coordsObj.playedCoords[k]?.y === el.y + 2) ||
@@ -93,8 +93,44 @@ export class Board {
               ) {
                 this.game.gameWon = true;
                 this.game.winningTeam = team;
+                return;
               }
             }
+          }
+          if (this.game.gameWon) {
+            return;
+          }
+        }
+      });
+    });
+
+    // Horizontal line
+    this.playedCoords.status.map((coordsObj, team) => {
+      coordsObj.playedCoords.map(el => {
+        for (let j = 0; j < coordsObj.playedCoords.length; j++) {
+          if (
+            (coordsObj.playedCoords[j]?.x === el.x + 1 &&
+              coordsObj.playedCoords[j]?.y === el.y) ||
+            (coordsObj.playedCoords[j]?.x === el.x - 1 &&
+              coordsObj.playedCoords[j]?.y === el.y)
+          ) {
+            console.log('found match 1');
+            for (let k = 0; k < coordsObj.playedCoords.length; k++) {
+              if (
+                (coordsObj.playedCoords[k]?.x === el.x + 2 &&
+                  coordsObj.playedCoords[k]?.y === el.y) ||
+                (coordsObj.playedCoords[k]?.x === el.x - 2 &&
+                  coordsObj.playedCoords[k]?.y === el.y)
+              ) {
+                console.log('found match 2');
+                this.game.gameWon = true;
+                this.game.winningTeam = team;
+                return;
+              }
+            }
+          }
+          if (this.game.gameWon) {
+            return;
           }
         }
       });
