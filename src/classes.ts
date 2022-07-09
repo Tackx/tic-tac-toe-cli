@@ -7,20 +7,18 @@ export class Game {
     this.winningTeam = null;
   }
 
-  gameWon: boolean;
-  winningTeam: Team | null;
+  public gameWon: boolean;
+  public winningTeam: Team | null;
+  public winningCombination: string | undefined;
 
   public start(): void {
     this.status = 1;
-    console.log('The game has been started');
+    console.log('The game has been started!');
   }
 
   public end(): void {
     this.status = 0;
-    console.log(
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      `The game has been finished. Winner = ${Team[this.winningTeam!]} team!`
-    );
+    console.log(`The game has been finished.`);
   }
 }
 
@@ -107,6 +105,7 @@ export class Board {
               ) {
                 this.game.gameWon = true;
                 this.game.winningTeam = team;
+                this.game.winningCombination = 'linear';
                 return;
               }
             }
@@ -151,6 +150,7 @@ export class Board {
               ) {
                 this.game.gameWon = true;
                 this.game.winningTeam = team;
+                this.game.winningCombination = 'horizontal';
                 return;
               }
             }
@@ -195,6 +195,7 @@ export class Board {
               ) {
                 this.game.gameWon = true;
                 this.game.winningTeam = team;
+                this.game.winningCombination = 'vertical';
                 return;
               }
             }
@@ -252,6 +253,8 @@ export class Player {
     }
     // After the player successfully makes their next move, check if the conditions for winning have been met
     this.board.incrementStepsPlayed();
-    this.board.checkWinCondition();
+    if (this.board.checkWinCondition()) {
+      this.winner = true;
+    }
   }
 }
