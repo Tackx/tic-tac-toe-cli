@@ -76,32 +76,22 @@ export class Board {
     this.playedCoords.status.map((coordsObj, team) => {
       coordsObj.playedCoords.map(el => {
         for (let j = 0; j < coordsObj.playedCoords.length; j++) {
-          if (
-            coordsObj.playedCoords[j]?.x === el.x + 1 &&
-            coordsObj.playedCoords[j]?.y === el.y + 1
-          ) {
+          if (coordsObj.playedCoords[j]?.x === el.x + 1 && coordsObj.playedCoords[j]?.y === el.y + 1) {
             for (let k = 0; k < coordsObj.playedCoords.length; k++) {
               if (
-                (coordsObj.playedCoords[k]?.x === el.x + 2 &&
-                  coordsObj.playedCoords[k]?.y === el.y + 2) ||
-                (coordsObj.playedCoords[k]?.x === el.x - 1 &&
-                  coordsObj.playedCoords[k]?.y === el.y - 1)
+                (coordsObj.playedCoords[k]?.x === el.x + 2 && coordsObj.playedCoords[k]?.y === el.y + 2) ||
+                (coordsObj.playedCoords[k]?.x === el.x - 1 && coordsObj.playedCoords[k]?.y === el.y - 1)
               ) {
                 this.game.gameWon = true;
                 this.game.winningTeam = team;
                 return;
               }
             }
-          } else if (
-            coordsObj.playedCoords[j]?.x === el.x - 1 &&
-            coordsObj.playedCoords[j]?.y === el.y - 1
-          ) {
+          } else if (coordsObj.playedCoords[j]?.x === el.x - 1 && coordsObj.playedCoords[j]?.y === el.y - 1) {
             for (let k = 0; k < coordsObj.playedCoords.length; k++) {
               if (
-                (coordsObj.playedCoords[k]?.x === el.x + 1 &&
-                  coordsObj.playedCoords[k]?.y === el.y + 1) ||
-                (coordsObj.playedCoords[k]?.x === el.x - 2 &&
-                  coordsObj.playedCoords[k]?.y === el.y - 2)
+                (coordsObj.playedCoords[k]?.x === el.x + 1 && coordsObj.playedCoords[k]?.y === el.y + 1) ||
+                (coordsObj.playedCoords[k]?.x === el.x - 2 && coordsObj.playedCoords[k]?.y === el.y - 2)
               ) {
                 this.game.gameWon = true;
                 this.game.winningTeam = team;
@@ -121,32 +111,22 @@ export class Board {
     this.playedCoords.status.map((coordsObj, team) => {
       coordsObj.playedCoords.map(el => {
         for (let j = 0; j < coordsObj.playedCoords.length; j++) {
-          if (
-            coordsObj.playedCoords[j]?.x === el.x + 1 &&
-            coordsObj.playedCoords[j]?.y === el.y
-          ) {
+          if (coordsObj.playedCoords[j]?.x === el.x + 1 && coordsObj.playedCoords[j]?.y === el.y) {
             for (let k = 0; k < coordsObj.playedCoords.length; k++) {
               if (
-                (coordsObj.playedCoords[k]?.x === el.x + 2 &&
-                  coordsObj.playedCoords[k]?.y === el.y) ||
-                (coordsObj.playedCoords[k]?.x === el.x - 1 &&
-                  coordsObj.playedCoords[k]?.y === el.y)
+                (coordsObj.playedCoords[k]?.x === el.x + 2 && coordsObj.playedCoords[k]?.y === el.y) ||
+                (coordsObj.playedCoords[k]?.x === el.x - 1 && coordsObj.playedCoords[k]?.y === el.y)
               ) {
                 this.game.gameWon = true;
                 this.game.winningTeam = team;
                 return;
               }
             }
-          } else if (
-            coordsObj.playedCoords[j]?.x === el.x - 1 &&
-            coordsObj.playedCoords[j]?.y === el.y
-          ) {
+          } else if (coordsObj.playedCoords[j]?.x === el.x - 1 && coordsObj.playedCoords[j]?.y === el.y) {
             for (let k = 0; k < coordsObj.playedCoords.length; k++) {
               if (
-                (coordsObj.playedCoords[k]?.x === el.x + 1 &&
-                  coordsObj.playedCoords[k]?.y === el.y) ||
-                (coordsObj.playedCoords[k]?.x === el.x - 2 &&
-                  coordsObj.playedCoords[k]?.y === el.y)
+                (coordsObj.playedCoords[k]?.x === el.x + 1 && coordsObj.playedCoords[k]?.y === el.y) ||
+                (coordsObj.playedCoords[k]?.x === el.x - 2 && coordsObj.playedCoords[k]?.y === el.y)
               ) {
                 this.game.gameWon = true;
                 this.game.winningTeam = team;
@@ -166,32 +146,22 @@ export class Board {
     this.playedCoords.status.map((coordsObj, team) => {
       coordsObj.playedCoords.map(el => {
         for (let j = 0; j < coordsObj.playedCoords.length; j++) {
-          if (
-            coordsObj.playedCoords[j]?.x === el.x &&
-            coordsObj.playedCoords[j]?.y === el.y + 1
-          ) {
+          if (coordsObj.playedCoords[j]?.x === el.x && coordsObj.playedCoords[j]?.y === el.y + 1) {
             for (let k = 0; k < coordsObj.playedCoords.length; k++) {
               if (
-                (coordsObj.playedCoords[k]?.x === el.x &&
-                  coordsObj.playedCoords[k]?.y === el.y + 2) ||
-                (coordsObj.playedCoords[k]?.x === el.x &&
-                  coordsObj.playedCoords[k]?.y === el.y - 1)
+                (coordsObj.playedCoords[k]?.x === el.x && coordsObj.playedCoords[k]?.y === el.y + 2) ||
+                (coordsObj.playedCoords[k]?.x === el.x && coordsObj.playedCoords[k]?.y === el.y - 1)
               ) {
                 this.game.gameWon = true;
                 this.game.winningTeam = team;
                 return;
               }
             }
-          } else if (
-            coordsObj.playedCoords[j]?.x === el.x &&
-            coordsObj.playedCoords[j]?.y === el.y - 1
-          ) {
+          } else if (coordsObj.playedCoords[j]?.x === el.x && coordsObj.playedCoords[j]?.y === el.y - 1) {
             for (let k = 0; k < coordsObj.playedCoords.length; k++) {
               if (
-                (coordsObj.playedCoords[k]?.x === el.x &&
-                  coordsObj.playedCoords[k]?.y === el.y + 1) ||
-                (coordsObj.playedCoords[k]?.x === el.x &&
-                  coordsObj.playedCoords[k]?.y === el.y - 2)
+                (coordsObj.playedCoords[k]?.x === el.x && coordsObj.playedCoords[k]?.y === el.y + 1) ||
+                (coordsObj.playedCoords[k]?.x === el.x && coordsObj.playedCoords[k]?.y === el.y - 2)
               ) {
                 this.game.gameWon = true;
                 this.game.winningTeam = team;
@@ -228,28 +198,19 @@ export class Player {
     const intY: number = parseInt(y);
 
     // Check X and Y converted to integers against an array of allowed values, defined on the Board class
-    if (
-      !this.board.getAvailableCoords().find(el => el === intX) ||
-      !this.board.getAvailableCoords().find(el => el === intY)
-    ) {
+    if (!this.board.getAvailableCoords().find(el => el === intX) || !this.board.getAvailableCoords().find(el => el === intY)) {
       return console.log(`Incorrect coord(s) entered: [${[x, y]}]`);
     }
 
     // If the X and Y coordinates have not been played yet, play them
     if (
-      !this.board
-        .getPlayedCoords()
-        .status[0].playedCoords.find(el => el.x === intX && el.y === intY) &&
-      !this.board
-        .getPlayedCoords()
-        .status[1].playedCoords.find(el => el.x === intX && el.y === intY)
+      !this.board.getPlayedCoords().status[0].playedCoords.find(el => el.x === intX && el.y === intY) &&
+      !this.board.getPlayedCoords().status[1].playedCoords.find(el => el.x === intX && el.y === intY)
     ) {
       this.board.updatePlayedCoords({ x: intX, y: intY }, this.team);
       console.log(`${this.name} plays ${[intX, intY]}`);
     } else {
-      return console.log(
-        `${this.name}: This coordinate has already been played ${[intX, intY]}`
-      );
+      return console.log(`${this.name}: This coordinate has already been played ${[intX, intY]}`);
     }
     // After the player successfully makes their next move, check if the conditions for winning have been met
     this.board.incrementStepsPlayed();

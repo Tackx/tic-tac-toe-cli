@@ -46,10 +46,6 @@ if (player1.winner) {
 }
 
 console.log(`Winning player: ${winningPlayer}`);
-console.log(
-  `Won in ${board.getStepsPlayed()} total game steps with a ${
-    game.winningCombination
-  } line!`
-);
+console.log(`Won in ${board.getStepsPlayed()} total game steps with a ${game.winningCombination} line!`);
 
 game.end();
