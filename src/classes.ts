@@ -70,7 +70,8 @@ export class Board {
     return;
   }
 
-  // Checks if there are 3 entries in a row in a linear line, TODO linear and horizontal checks
+  // Checks if there are 3 entries in a row in a linear, horizontal or vertical line in the array of played coords
+  // Possible TODO - make it check only the array of the given team, not both teams each time
   public checkWinCondition(): boolean {
     // Linear line check
     this.playedCoords.status.map((coordsObj, team) => {
