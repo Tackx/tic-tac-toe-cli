@@ -1,7 +1,7 @@
 # Tic-Tac-Toe
 
 - Written in TypeScript
-- Used to practice OOP in TS
+- Used to practice OOP and TS
   - Still quite new to TS
 - Win condition checking algorithm could definitely be improved upon
 - Currently only played via CLI
